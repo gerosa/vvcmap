@@ -1,6 +1,7 @@
 [tools]
-# Node.js version is specified in .node-version (read by mise, fnm, etc.)
-# pnpm version floats >= 10.0.0 - managed via package.json engines field
+node = "24.5.0"
+pnpm = "11.9.0"
+
 
 # Based on https://mise.jdx.dev/mise-cookbook/nodejs.html#example-with-pnpm
 # Mise installs node based on .node-version but needs this hook to install

@@ -61,3 +61,4 @@ lib-cov
 
 .nova
 dist
+backups/

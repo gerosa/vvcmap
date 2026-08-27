@@ -4,6 +4,7 @@ import {
   ReaderIcon,
 } from "@radix-ui/react-icons";
 import { FileInfo } from "app/components/file_info";
+import { SaveStatus } from "app/components/save_status";
 import { useSetAtom } from "jotai";
 import { DropdownMenu as DD } from "radix-ui";
 import { memo } from "react";
@@ -14,7 +15,7 @@ import { MenuBarDropdown } from "./menu_bar/menu_bar_dropdown";
 export const MenuBarPlay = memo(function MenuBar() {
   return (
     <div className="flex justify-between h-12 pr-2 text-black dark:text-white">
-      <div className="flex items-center">
+      <div className="flex items-center gap-x-2">
         <span
           className="py-1 pl-1 pr-2
           text-gray-500
@@ -32,6 +33,7 @@ export const MenuBarPlay = memo(function MenuBar() {
           </a>
         </span>
         <FileInfo />
+        <SaveStatus />
       </div>
       <div className="flex items-center gap-x-2">
         <MenuBarDropdown />

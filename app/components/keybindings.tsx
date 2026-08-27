@@ -1,15 +1,14 @@
-import useFileSave from "app/hooks/use_file_save";
 import { useMapKeybindings } from "app/hooks/use_map_keybindings";
 import { useOpenFiles } from "app/hooks/use_open_files";
+import { useServerSave } from "app/hooks/use_server_save";
 import { captureException } from "integrations/errors";
 import { useHotkeys } from "integrations/hotkeys";
 import { useSetAtom } from "jotai";
-import toast from "react-hot-toast";
 import { dialogAtom } from "state/jotai";
 
 export function Keybindings() {
   const setDialogState = useSetAtom(dialogAtom);
-  const saveNative = useFileSave();
+  const { manualSave } = useServerSave();
   const openFiles = useOpenFiles();
 
   useMapKeybindings();
@@ -63,19 +62,9 @@ export function Keybindings() {
     "meta+s, Ctrl+s",
     (e) => {
       e.preventDefault();
-      (async () => {
-        const either = await saveNative();
-        return either
-          .ifLeft((error) => toast.error(error?.message || "Could not save"))
-          .map((saved) => {
-            if (saved) return;
-            setDialogState({
-              type: "export",
-            });
-          });
-      })().catch((e) => captureException(e));
+      manualSave().catch((e) => captureException(e));
     },
-    [setDialogState, saveNative],
+    [manualSave],
   );
 
   useHotkeys(

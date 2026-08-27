@@ -13,6 +13,7 @@ import { ImportTextDialog } from "app/components/dialogs/import_text";
 import { ImportURLDialog } from "app/components/dialogs/import_url";
 import { QuickswitcherDialog } from "app/components/dialogs/quickswitcher";
 import SimplifyDialog from "app/components/dialogs/simplify";
+import { VersionHistoryDialog } from "app/components/dialogs/version_history";
 import { useAtom } from "jotai";
 import { Dialog as D } from "radix-ui";
 import { memo, Suspense, useCallback } from "react";
@@ -72,6 +73,9 @@ export const Dialogs = memo(function Dialogs() {
     .with({ type: "from_url" }, () => <ImportURLDialog onClose={onClose} />)
     .with({ type: "import_example" }, () => (
       <ImportExampleDialog onClose={onClose} />
+    ))
+    .with({ type: "version_history" }, () => (
+      <VersionHistoryDialog onClose={onClose} />
     ))
     .exhaustive();
 

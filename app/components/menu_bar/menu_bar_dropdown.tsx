@@ -1,4 +1,9 @@
-import { ArrowRightIcon, CaretRightIcon } from "@radix-ui/react-icons";
+import {
+  ArrowRightIcon,
+  CaretRightIcon,
+  CounterClockwiseClockIcon,
+  FileTextIcon,
+} from "@radix-ui/react-icons";
 import {
   DDContent,
   DDLabel,
@@ -9,6 +14,7 @@ import {
   styledButton,
 } from "app/components/elements";
 import { useOpenFiles } from "app/hooks/use_open_files";
+import { useServerSave } from "app/hooks/use_server_save";
 import { usePersistence } from "app/lib/persistence/context";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { DropdownMenu as DD } from "radix-ui";
@@ -79,6 +85,7 @@ function ThemeSwitcher() {
 export function MenuBarDropdown() {
   const openFiles = useOpenFiles();
   const setDialogState = useSetAtom(dialogAtom);
+  const { manualSave } = useServerSave();
 
   return (
     <div className="flex items-center">
@@ -88,6 +95,25 @@ export function MenuBarDropdown() {
         </DD.Trigger>
         <DD.Portal>
           <DDContent>
+            <StyledItem
+              onSelect={() => {
+                manualSave();
+              }}
+            >
+              <FileTextIcon />
+              Save to server
+              <div className="flex-auto" />
+              <span className="text-xs text-gray-400">⌘S</span>
+            </StyledItem>
+            <StyledItem
+              onSelect={() => {
+                setDialogState({ type: "version_history" });
+              }}
+            >
+              <CounterClockwiseClockIcon />
+              Version history…
+            </StyledItem>
+            <DDSeparator />
             <DD.Sub>
               <DDSubTriggerItem>
                 Import
