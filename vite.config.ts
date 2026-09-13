@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import { defineConfig } from "vitest/config";
+import { saveMiddlewarePlugin } from "./server/save_middleware";
 
 const localRoots = ["app", "types", "state", "integrations", "test", "vendor", 'styles'];
 
@@ -19,7 +20,7 @@ export default defineConfig((env) => ({
   plugins:
     env.mode === "test"
       ? [react()]
-      : [react(), nodePolyfills()],
+      : [react(), nodePolyfills(), saveMiddlewarePlugin()],
   worker: {
     format: "es",
     plugins: () => [],

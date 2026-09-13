@@ -86,6 +86,9 @@ type DialogState =
   | {
       type: "from_url";
     }
+  | {
+      type: "version_history";
+    }
   | null;
 
 export const dialogAtom = atomWithReset<DialogState>(null);

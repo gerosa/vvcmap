@@ -35,11 +35,14 @@ import {
 } from "app/components/resizer";
 import { MapContext } from "app/context/map_context";
 import { useImportFile, useImportString } from "app/hooks/use_import";
+import { AutoSaveListener, setSavedBaseline } from "app/hooks/use_server_save";
 import { DEFAULT_IMPORT_OPTIONS, detectType } from "app/lib/convert";
+import { getExtent } from "app/lib/geometry";
 import clsx from "clsx";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useAtomCallback } from "jotai/utils";
 import debounce from "lodash/debounce";
+import type { LngLatBoundsLike } from "maplibre-gl";
 import { Tooltip as T } from "radix-ui";
 import {
   Suspense,
@@ -59,6 +62,7 @@ import {
   themeAtom,
 } from "state/jotai";
 import { match } from "ts-pattern";
+import type { BBox } from "types";
 import { useSearchParams } from "wouter";
 import { Button, StyledTooltipArrow, TContent } from "./elements";
 import { FeatureEditorFolder } from "./panels/feature_editor/feature_editor_folder";
@@ -83,11 +87,26 @@ function UrlAPI() {
   const [searchParams] = useSearchParams();
   const load = searchParams?.get("load");
   const done = useRef<boolean>(false);
+  const map = useContext(MapContext);
+  const [pendingExtent, setPendingExtent] = useState<BBox | null>(null);
+  const zoomDone = useRef<boolean>(false);
 
   useEffect(() => {
-    if (load && !done.current) {
-      done.current = true;
-      (async () => {
+    if (pendingExtent && map?.map && !zoomDone.current) {
+      zoomDone.current = true;
+      map.map.fitBounds(pendingExtent as LngLatBoundsLike, {
+        padding: 50,
+        maxZoom: 18,
+      });
+    }
+  }, [pendingExtent, map]);
+
+  useEffect(() => {
+    if (done.current) return;
+    done.current = true;
+
+    (async () => {
+      if (load) {
         try {
           const url = new URL(load);
           if (url.protocol === "https:") {
@@ -101,7 +120,15 @@ function UrlAPI() {
               },
             );
             const options = (await detectType(file)).unsafeCoerce();
-            doImportFile(file, options, () => {});
+            const either = await doImportFile(file, options, () => {});
+            if (either.isRight()) {
+              const result = await either.extract();
+              if (result.type === "geojson") {
+                getExtent(result.geojson).ifJust((bbox) => {
+                  setPendingExtent(bbox);
+                });
+              }
+            }
           } else if (url.protocol === "data:") {
             const [description, ...parts] = url.pathname.split(",");
             const data = parts.join(",");
@@ -118,7 +145,7 @@ function UrlAPI() {
               });
 
             if (type === "application/json") {
-              doImportString(
+              const either = await doImportString(
                 decoded,
                 {
                   ...DEFAULT_IMPORT_OPTIONS,
@@ -129,6 +156,14 @@ function UrlAPI() {
                   console.log(args);
                 },
               );
+              if (either.isRight()) {
+                const result = await either.extract();
+                if (result.type === "geojson") {
+                  getExtent(result.geojson).ifJust((bbox) => {
+                    setPendingExtent(bbox);
+                  });
+                }
+              }
             } else {
               setDialogState({
                 type: "load_text",
@@ -145,8 +180,38 @@ function UrlAPI() {
             e instanceof Error ? e.message : "Failed to load data from URL",
           );
         }
-      })();
-    }
+      } else {
+        try {
+          const res = await fetch(`${import.meta.env.BASE_URL}vvc.geojson`);
+          if (!res.ok) {
+            throw new Error(`Failed to load vvc.geojson: ${res.statusText}`);
+          }
+          const text = await res.text();
+          setSavedBaseline(text);
+          const either = await doImportString(
+            text,
+            {
+              ...DEFAULT_IMPORT_OPTIONS,
+              type: "geojson",
+            },
+            () => {},
+            "vvc.geojson",
+          );
+          if (either.isRight()) {
+            const result = await either.extract();
+            if (result.type === "geojson") {
+              getExtent(result.geojson).ifJust((bbox) => {
+                setPendingExtent(bbox);
+              });
+            }
+          }
+        } catch (e) {
+          toast.error(
+            e instanceof Error ? e.message : "Failed to auto-load vvc.geojson",
+          );
+        }
+      }
+    })();
   }, [load, doImportString, doImportFile, setDialogState]);
 
   return null;
@@ -268,6 +333,7 @@ export function PlacemarkPlay() {
           </div>
           <Drop />
           <UrlAPI />
+          <AutoSaveListener />
           <Dialogs />
           <Suspense fallback={null}>
             <Keybindings />

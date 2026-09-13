@@ -1,0 +1,347 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.64313,
+                    -19.90161
+                ]
+            },
+            "properties": {
+                "id": "REF",
+                "nome": "REFERENCIA - CEP 29650-000 (ponto de calibracao)",
+                "status": "referencia",
+                "observacoes": "Ponto conhecido usado para georreferenciar todos os outros lotes. NAO e um lote.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.649852,
+                    -19.903236
+                ]
+            },
+            "properties": {
+                "id": "L01",
+                "nome": "Lote isolado superior",
+                "status": "construido",
+                "observacoes": "Casa isolada no topo do morro, acesso por estrada de terra estreita.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.648445,
+                    -19.903205
+                ]
+            },
+            "properties": {
+                "id": "L02",
+                "nome": "Propriedade com terraplanagem A",
+                "status": "em_desenvolvimento",
+                "observacoes": "Grande area de terra vermelha exposta, sem construcao visivel ainda.",
+                "proprietario": "xsdf",
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.650659,
+                    -19.903278
+                ]
+            },
+            "properties": {
+                "id": "L03",
+                "nome": "Casa branca centro-esquerda",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.651287,
+                    -19.903693
+                ]
+            },
+            "properties": {
+                "id": "L04",
+                "nome": "Casa com telhado laranja",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.649386,
+                    -19.903958
+                ]
+            },
+            "properties": {
+                "id": "L05",
+                "nome": "Cluster de casas via principal",
+                "status": "construido",
+                "observacoes": "2-3 construcoes proximas.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.651765,
+                    -19.90407
+                ]
+            },
+            "properties": {
+                "id": "L06",
+                "nome": "Casa proxima curva sul",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.651696,
+                    -19.904455
+                ]
+            },
+            "properties": {
+                "id": "L07",
+                "nome": "Casa com area gramada",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.650978,
+                    -19.904476
+                ]
+            },
+            "properties": {
+                "id": "L08",
+                "nome": "Casa com quadra/campo",
+                "status": "construido",
+                "observacoes": "Possivel campo esportivo ou area de lazer ao lado.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.650022,
+                    -19.904485
+                ]
+            },
+            "properties": {
+                "id": "L09",
+                "nome": "Casa com piscina/tanque",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.650545,
+                    -19.905011
+                ]
+            },
+            "properties": {
+                "id": "L10",
+                "nome": "Casas sul do cluster esquerdo",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.6505,
+                    -19.905738
+                ]
+            },
+            "properties": {
+                "id": "L11",
+                "nome": "Grupo residencial inferior esquerdo",
+                "status": "construido",
+                "observacoes": "4-5 construcoes proximas, pequeno agrupamento residencial.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.648498,
+                    -19.905139
+                ]
+            },
+            "properties": {
+                "id": "L12",
+                "nome": "Trilha/pista sinuosa com terra exposta",
+                "status": "em_desenvolvimento",
+                "observacoes": "Padrao de curvas sugere pista/trilha de terra.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.646906,
+                    -19.904912
+                ]
+            },
+            "properties": {
+                "id": "L13",
+                "nome": "Casa central com telhado grande",
+                "status": "construido",
+                "observacoes": "test",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.644573,
+                    -19.904381
+                ]
+            },
+            "properties": {
+                "id": "L14",
+                "nome": "Lote com terraplanagem direita superior",
+                "status": "em_desenvolvimento",
+                "observacoes": "Duas construcoes sobre plataforma de terra nivelada.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.643471,
+                    -19.905267
+                ]
+            },
+            "properties": {
+                "id": "L15",
+                "nome": "Casas cluster direito",
+                "status": "construido",
+                "observacoes": "3-4 construcoes, algumas em fase final de obra.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.645746,
+                    -19.905952
+                ]
+            },
+            "properties": {
+                "id": "L16",
+                "nome": "Villaggio Zamprogno",
+                "status": "construido",
+                "observacoes": "Local nomeado explicitamente no mapa original.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.649385,
+                    -19.906059
+                ]
+            },
+            "properties": {
+                "id": "L17",
+                "nome": "Lago/tanque artificial",
+                "status": "area_natural",
+                "observacoes": "Corpo d'agua verde-escuro, possivelmente represa/piscicultura.",
+                "proprietario": null,
+                "area_m2": null
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -40.645336,
+                    -19.906059
+                ]
+            },
+            "properties": {
+                "id": "L18",
+                "nome": "Grupo de casas junto ao Villaggio",
+                "status": "construido",
+                "observacoes": "",
+                "proprietario": null,
+                "area_m2": null
+            }
+        }
+    ]
+}
